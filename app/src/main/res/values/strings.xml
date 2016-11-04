@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">andorid-jwt-authentication</string>
+    <string name="app_name">Auth</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="text_login">Login</string>
+    <string name="text_sign_up">Sign up</string>
+    <string name="hint_profile_color">Profile color</string>
 </resources>
