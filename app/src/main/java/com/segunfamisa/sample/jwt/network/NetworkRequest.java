@@ -34,7 +34,7 @@ public class NetworkRequest {
      * Sets the callback for the network request
      * @param callback
      */
-    private void setCallback(Callback callback) {
+    public void setCallback(Callback callback) {
         mCallback = callback;
     }
 

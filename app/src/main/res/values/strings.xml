@@ -1,8 +1,15 @@
 <resources>
-    <string name="app_name">Auth</string>
+    <string name="app_name">JWT Auth</string>
+
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
+    <string name="hint_profile_color">Profile color</string>
+
     <string name="text_login">Login</string>
     <string name="text_sign_up">Sign up</string>
-    <string name="hint_profile_color">Profile color</string>
+
+    <string name="toast_no_empty_field">Please fill all fields</string>
+
+    <string name="progress_signup">Sign up in progress…please wait</string>
+    <string name="progress_login">Login in progress…please wait</string>
 </resources>
