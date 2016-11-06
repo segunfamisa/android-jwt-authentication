@@ -79,4 +79,8 @@ public class AuthHelper {
         }
         return null;
     }
+
+    public void clear() {
+        mPrefs.edit().clear().commit();
+    }
 }

@@ -7,6 +7,7 @@
 
     <string name="text_login">Login</string>
     <string name="text_sign_up">Sign up</string>
+    <string name="text_welcome">Hello, %1$s</string>
 
     <string name="prompt_login">Click here to login</string>
     <string name="prompt_signup">Click here to sign up</string>
@@ -17,6 +18,7 @@
     <string name="progress_login">Login in progress…please wait</string>
     <string name="progress_quote">Fetching quote…please wait</string>
 
-    <string name="text_welcome">Hello, %1$s</string>
+
     <string name="button_text_protected_quote">Get Quote</string>
+    <string name="button_text_logout">Logout</string>
 </resources>

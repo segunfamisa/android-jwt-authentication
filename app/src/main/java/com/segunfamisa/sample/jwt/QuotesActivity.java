@@ -18,6 +18,7 @@ public class QuotesActivity extends AppCompatActivity implements View.OnClickLis
     private TextView mTextWelcome;
     private TextView mTextQuote;
     private Button mButtonRandom;
+    private Button mButtonLogout;
 
     private AuthHelper mAuthHelper;
 
@@ -35,6 +36,7 @@ public class QuotesActivity extends AppCompatActivity implements View.OnClickLis
         mTextWelcome = (TextView) findViewById(R.id.text_username);
         mTextQuote = (TextView) findViewById(R.id.text_quote);
         mButtonRandom = (Button) findViewById(R.id.button_random_quote);
+        mButtonLogout = (Button) findViewById(R.id.button_logout);
 
         mProgressDialog = new ProgressDialog(this);
         mAuthHelper = AuthHelper.getInstance(this);
@@ -49,6 +51,7 @@ public class QuotesActivity extends AppCompatActivity implements View.OnClickLis
     private void setupView() {
         setWelcomeText(mAuthHelper.getUsername());
         mButtonRandom.setOnClickListener(this);
+        mButtonLogout.setOnClickListener(this);
     }
 
     /**
@@ -71,6 +74,9 @@ public class QuotesActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         if (view == mButtonRandom) {
             doGetQuote(mAuthHelper.getIdToken());
+        } else if (view == mButtonLogout) {
+            mAuthHelper.clear();
+            finish();
         }
     }
 
