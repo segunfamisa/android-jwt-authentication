@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button mButtonAction;
 
     private ProgressDialog mProgressDialog;
+    private AuthHelper mAuthHelper;
 
     /**
      * Flag to show whether it is sign up field that's showing
@@ -35,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        mAuthHelper = AuthHelper.getInstance(this);
         mProgressDialog = new ProgressDialog(this);
 
         mTitleAction = (TextView) findViewById(R.id.text_title);
@@ -45,6 +47,10 @@ public class LoginActivity extends AppCompatActivity {
         mButtonAction = (Button) findViewById(R.id.button_action);
 
         setupView(mIsSignUpShowing);
+
+        if (mAuthHelper.isLoggedIn()) {
+            startActivity(QuotesActivity.getCallingIntent(this));
+        }
     }
 
     /**
@@ -122,8 +128,7 @@ public class LoginActivity extends AppCompatActivity {
      * @param token - {@link Token} received on login or signup
      */
     private void saveSessionDetails(@NonNull Token token) {
-        AuthHelper auth = AuthHelper.getInstance(this);
-        auth.setIdToken(token);
+        mAuthHelper.setIdToken(token);
 
         // start profile activity
         startActivity(QuotesActivity.getCallingIntent(this));

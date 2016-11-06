@@ -12,6 +12,7 @@
 
     <string name="progress_signup">Sign up in progress…please wait</string>
     <string name="progress_login">Login in progress…please wait</string>
+    <string name="progress_quote">Fetching quote…please wait</string>
 
     <string name="text_welcome">Hello, %1$s</string>
     <string name="button_text_protected_quote">Get Quote</string>

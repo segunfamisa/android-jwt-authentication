@@ -82,6 +82,18 @@ public class NetworkRequest {
     }
 
     /**
+     * Get protected quote
+     * @param token
+     * @param callback
+     */
+    public void doGetProtectedQuote(@NonNull String token, @Nullable Callback callback) {
+        setCallback(callback);
+
+        String protectedQuoteUrl = BASE_URL + "api/protected/random-quote";
+        doGetRequestWithToken(protectedQuoteUrl, new HashMap<String, String>(), token, callback);
+    }
+
+    /**
      * Execute post request
      *
      * @param url
@@ -103,6 +115,31 @@ public class NetworkRequest {
                 .build();
 
         doRequest(request, callback);
+    }
+
+    private void doGetRequestWithToken(@NonNull String url, @NonNull Map<String, String> params,
+                                       @Nullable String token, @Nullable Callback callback) {
+        HttpUrl httpUrl = HttpUrl.parse(url);
+
+        HttpUrl.Builder urlBuilder = httpUrl.newBuilder();
+        for (String key : params.keySet()) {
+            urlBuilder.addQueryParameter(key, params.get(key));
+        }
+
+        Request.Builder requestBuilder = new Request.Builder()
+                .url(urlBuilder.build())
+                .get();
+
+        if (token != null) {
+            requestBuilder.addHeader("Authorization", "Bearer " + token);
+        }
+
+        doRequest(requestBuilder.build(), callback);
+    }
+
+    private void doGetRequestNoToken(@NonNull String url, @NonNull Map<String, String> params,
+                                     @NonNull String token, @Nullable Callback callback) {
+        doGetRequestWithToken(url, params, token, callback);
     }
 
     /**
@@ -157,19 +194,6 @@ public class NetworkRequest {
                 });
     }
 
-//    private void doGetRequestNoAuth(@NonNull String url, @NonNull Map<String, String> params, String tag, Callback callback) {
-//        url = url + buildGetParamsString(url, params);
-//        setCallback(callback);
-//
-//        HttpUrl httpUrl = HttpUrl.parse(url);
-//
-//        Request.Builder requestBuilder = new Request.Builder();
-//        requestBuilder.get()
-//                .header()
-//    }
-//
-//    private void doGetRequestWithAuth() {}
-
     private Object buildObjectFromResponse(String response, Class cls) {
         if (cls == String.class) {
             return response;
@@ -182,7 +206,7 @@ public class NetworkRequest {
         }
     }
 
-    private String buildGetParamsString(String url, Map<String, String> params) {
+    private String getParamsString(Map<String, String> params) {
         HttpUrl.Builder urlBuilder = new HttpUrl.Builder();
         for (String key : params.keySet()) {
             urlBuilder.addQueryParameter(key, params.get(key));

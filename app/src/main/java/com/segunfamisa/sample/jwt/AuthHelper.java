@@ -46,7 +46,7 @@ public class AuthHelper {
     }
 
     @Nullable
-    private String getIdToken() {
+    public String getIdToken() {
         return mPrefs.getString(PREF_TOKEN, null);
     }
 

@@ -34,5 +34,6 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:layout_below="@id/button_random_quote"
         android:textStyle="italic"
+        android:gravity="center"
         tools:text="Chuck Norris"/>
 </RelativeLayout>
