@@ -8,6 +8,9 @@
     <string name="text_login">Login</string>
     <string name="text_sign_up">Sign up</string>
 
+    <string name="prompt_login">Click here to login</string>
+    <string name="prompt_signup">Click here to sign up</string>
+
     <string name="toast_no_empty_field">Please fill all fields</string>
 
     <string name="progress_signup">Sign up in progress…please wait</string>

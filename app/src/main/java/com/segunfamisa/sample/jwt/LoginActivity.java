@@ -62,10 +62,9 @@ public class LoginActivity extends AppCompatActivity {
         mIsSignUpShowing = isSignUpShowing;
         mTitleAction.setText(isSignUpShowing ? R.string.text_sign_up : R.string.text_login);
         mButtonAction.setText(isSignUpShowing ? R.string.text_sign_up : R.string.text_login);
-        mPromptAction.setText(isSignUpShowing ? R.string.text_login: R.string.text_sign_up);
+        mPromptAction.setText(isSignUpShowing ? R.string.prompt_login: R.string.prompt_signup);
 
-        mEditProfileColor.setVisibility(isSignUpShowing ? View.VISIBLE : View.GONE)
-        ;
+        mEditProfileColor.setVisibility(isSignUpShowing ? View.VISIBLE : View.GONE);
         mButtonAction.setOnClickListener(isSignUpShowing ? doSignUpClickListener : doLoginClickListener);
         mPromptAction.setOnClickListener(isSignUpShowing ? showLoginFormClickListener :
                 showSignUpFormClickListener);
