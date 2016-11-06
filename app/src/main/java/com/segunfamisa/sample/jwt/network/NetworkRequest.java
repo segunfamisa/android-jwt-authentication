@@ -23,7 +23,7 @@ import okhttp3.Response;
  * Network Request class to abstract implementation details of requests
  */
 public class NetworkRequest {
-    private static final String BASE_URL = "http://192.168.10.3:3001/"; //"http://localhost:3001";
+    private static final String BASE_URL = "http://localhost:3001";
 
     private Callback mCallback;
 
