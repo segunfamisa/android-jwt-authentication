@@ -19,6 +19,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+/**
+ * Network Request class to abstract implementation details of requests
+ */
 public class NetworkRequest {
     private static final String BASE_URL = "http://192.168.10.3:3001/"; //"http://localhost:3001";
 
@@ -83,8 +86,9 @@ public class NetworkRequest {
 
     /**
      * Get protected quote
-     * @param token
-     * @param callback
+     *
+     * @param token - token
+     * @param callback - callback
      */
     public void doGetProtectedQuote(@NonNull String token, @Nullable Callback callback) {
         setCallback(callback);
@@ -206,20 +210,19 @@ public class NetworkRequest {
         }
     }
 
-    private String getParamsString(Map<String, String> params) {
-        HttpUrl.Builder urlBuilder = new HttpUrl.Builder();
-        for (String key : params.keySet()) {
-            urlBuilder.addQueryParameter(key, params.get(key));
-        }
-        return urlBuilder.toString();
-    }
-
+    /**
+     * Callback interface for network response and error
+     * @param <T>
+     */
     public interface Callback<T> {
         void onResponse(@NonNull T response);
         void onError(String error);
         Class<T> type();
     }
 
+    /**
+     * ApiResponse interface
+     */
     public interface ApiResponse {
         String string();
     }
