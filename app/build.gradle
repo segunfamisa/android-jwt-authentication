@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.0"
     defaultConfig {
         applicationId "com.segunfamisa.sample.jwt"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -28,6 +28,7 @@ dependencies {
     compile 'com.auth0:java-jwt:2.2.1'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.google.code.gson:gson:2.4'
+    compile 'com.auth0.android:lock:2.1.1'
 
     // test dependencies
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
