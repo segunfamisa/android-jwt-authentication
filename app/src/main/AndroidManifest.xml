@@ -11,14 +11,16 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity
+            android:name=".StartActivity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".QuotesActivity" />
+        <activity android:name=".LoginActivity" />
 
         <activity
             android:name="com.auth0.android.lock.LockActivity"
@@ -26,7 +28,6 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/Lock.Theme">
-
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -38,9 +39,13 @@
                     android:pathPrefix="/android/com.segunfamisa.sample.jwt/callback"
                     android:scheme="https" />
             </intent-filter>
-
-
         </activity>
+
+        <!-- begin auth0 webauth activity -->
+        <activity
+            android:name="com.auth0.android.provider.WebAuthActivity"
+            android:theme="@style/Lock.Theme" />
+        <!-- end auth0 webauth activity -->
     </application>
 
 </manifest>

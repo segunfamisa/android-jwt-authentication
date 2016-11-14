@@ -5,24 +5,12 @@ import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.auth0.jwt.JWTVerifier;
-import com.segunfamisa.sample.jwt.network.Token;
-
-import java.util.Map;
-
 public class AuthHelper {
-    /**
-     * Secret used to verify the JWT token
-     */
-    private static final String SECRET= "ngEurope rocks!";
-
-    /**
-     * Key for username in the jwt claim
-     */
-    private static final String JWT_KEY_USERNAME = "username";
 
     private static final String PREFS = "prefs";
-    private static final String PREF_TOKEN = "pref_token";
+    private static final String PREF_ID_TOKEN = "pref_id_token";
+    private static final String PREF_ACCESS_TOKEN = "pref_access_token";
+
     private SharedPreferences mPrefs;
 
     private static AuthHelper sInstance;
@@ -39,45 +27,30 @@ public class AuthHelper {
         return sInstance;
     }
 
-    public void setIdToken(@NonNull Token token) {
+    public void setIdToken(@NonNull String token) {
         SharedPreferences.Editor editor = mPrefs.edit();
-        editor.putString(PREF_TOKEN, token.getIdToken());
+        editor.putString(PREF_ID_TOKEN, token);
         editor.apply();
     }
 
     @Nullable
     public String getIdToken() {
-        return mPrefs.getString(PREF_TOKEN, null);
+        return mPrefs.getString(PREF_ID_TOKEN, null);
+    }
+
+    public void setAccessToken(@NonNull String accessToken) {
+        SharedPreferences.Editor editor = mPrefs.edit();
+        editor.putString(PREF_ACCESS_TOKEN, accessToken);
+        editor.apply();
+    }
+
+    public String getAccessToken() {
+        return mPrefs.getString(PREF_ACCESS_TOKEN, null);
     }
 
     public boolean isLoggedIn() {
         String token = getIdToken();
         return token != null;
-    }
-
-    /**
-     * Gets the username of the signed in user
-     * @return - username of the signed in user
-     */
-    public String getUsername() {
-        if (isLoggedIn()) {
-            return decodeUsername(getIdToken());
-        }
-        return null;
-    }
-
-    @Nullable
-    private String decodeUsername(String token) {
-        JWTVerifier verifier = new JWTVerifier(SECRET);
-        try {
-            Map<String, Object> claims = verifier.verify(token);
-            if (claims != null && claims.containsKey(JWT_KEY_USERNAME)) {
-                return claims.get(JWT_KEY_USERNAME).toString();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     public void clear() {
