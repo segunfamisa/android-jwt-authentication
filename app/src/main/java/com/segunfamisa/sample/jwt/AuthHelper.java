@@ -5,16 +5,10 @@ import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.auth0.jwt.JWTVerifier;
+import com.auth0.android.jwt.JWT;
 import com.segunfamisa.sample.jwt.network.Token;
 
-import java.util.Map;
-
 public class AuthHelper {
-    /**
-     * Secret used to verify the JWT token
-     */
-    private static final String SECRET= "ngEurope rocks!";
 
     /**
      * Key for username in the jwt claim
@@ -68,12 +62,12 @@ public class AuthHelper {
 
     @Nullable
     private String decodeUsername(String token) {
-        JWTVerifier verifier = new JWTVerifier(SECRET);
+        JWT jwt = new JWT(token);
         try {
-            Map<String, Object> claims = verifier.verify(token);
-            if (claims != null && claims.containsKey(JWT_KEY_USERNAME)) {
-                return claims.get(JWT_KEY_USERNAME).toString();
+            if (jwt.getClaim(JWT_KEY_USERNAME) != null) {
+                return jwt.getClaim(JWT_KEY_USERNAME).asString();
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
